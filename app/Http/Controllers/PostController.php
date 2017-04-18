@@ -52,12 +52,12 @@ class PostController extends Controller
     public function store(Request $request)
     {
         // validate the data
-        $this->validate($request, array(
+        $this->validate($request, [
                 'title'         => 'required|max:255',
                 'slug'          => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
                 'category_id'   => 'required|integer',
                 'body'          => 'required'
-            ));
+            ]);
 
         // store in the database
         $post = new Post;
@@ -111,13 +111,13 @@ class PostController extends Controller
         // find the post in the database and save as a var
         $post = Post::find($id);
         $categories = Category::all();
-        $cats = array();
+        $cats = [];
         foreach ($categories as $category) {
             $cats[$category->id] = $category->name;
         }
 
         $tags = Tag::all();
-        $tags2 = array();
+        $tags2 = [];
         foreach ($tags as $tag) {
             $tags2[$tag->id] = $tag->name;
         }
@@ -138,18 +138,18 @@ class PostController extends Controller
         $post = Post::find($id);
 
         if ($request->input('slug') == $post->slug) {
-            $this->validate($request, array(
+            $this->validate($request, [
                 'title' => 'required|max:255',
                 'category_id' => 'required|integer',
                 'body'  => 'required'
-            ));
+            ]);
         } else {
-            $this->validate($request, array(
+            $this->validate($request, [
                 'title' => 'required|max:255',
                 'slug'  => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
                 'category_id' => 'required|integer',
                 'body'  => 'required'
-            ));
+            ]);
         }
 
         // Save the data to the database
@@ -165,7 +165,7 @@ class PostController extends Controller
         if (isset($request->tags)) {
             $post->tags()->sync($request->tags);
         } else {
-            $post->tags()->sync(array());
+            $post->tags()->sync([]);
         }
 
 

@@ -43,11 +43,11 @@ class PagesController extends Controller
             'subject' => 'min:3',
             'message' => 'min:10']);
 
-        $data = array(
+        $data = [
             'email' => $request->email,
             'subject' => $request->subject,
             'bodyMessage' => $request->message
-            );
+            ];
 
         Mail::send('emails.contact', $data, function ($message) use ($data) {
             $message->from($data['email']);

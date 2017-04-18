@@ -39,9 +39,9 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         // Save a new category and then redirect back to index
-        $this->validate($request, array(
+        $this->validate($request, [
             'name' => 'required|max:255'
-            ));
+            ]);
 
         $category = new Category;
 
