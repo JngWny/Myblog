@@ -11,7 +11,8 @@ use Session;
 class CategoryController extends Controller
 {
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -27,7 +28,6 @@ class CategoryController extends Controller
 
         $categories = Category::all();
         return view('categories.index')->withCategories($categories);
-
     }
 
     /**

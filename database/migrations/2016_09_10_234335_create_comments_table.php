@@ -12,8 +12,7 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table)
-        {
+        Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('email');
@@ -23,7 +22,6 @@ class CreateCommentsTable extends Migration
             $table->timestamps();
             // set up foreign key
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
-
         });
     }
 
@@ -36,6 +34,5 @@ class CreateCommentsTable extends Migration
     {
         Schema::dropForeign(['post_id');
         Schema::drop('comments');
-
     }
 }

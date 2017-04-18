@@ -16,7 +16,8 @@ use Image;
 class PostController extends Controller
 {
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
     /**
@@ -67,13 +68,12 @@ class PostController extends Controller
         $post->body = Purifier::clean($request->body);
 
         // save image
-        if ($request->hasfile('featured_image'))
-        {
+        if ($request->hasfile('featured_image')) {
             $image=$request->file('featured_image');
             $filename = time().'.'.$image->getClientOriginalExtension();
         //could uses encode('png')
             $location = public_path('images/'.$filename);
-            Image::make($image)->resize(800,400)->save($location);
+            Image::make($image)->resize(800, 400)->save($location);
 
         // give instructions to find file in database
             $post-> image = $filename;
@@ -144,7 +144,7 @@ class PostController extends Controller
                 'body'  => 'required'
             ));
         } else {
-        $this->validate($request, array(
+            $this->validate($request, array(
                 'title' => 'required|max:255',
                 'slug'  => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
                 'category_id' => 'required|integer',
