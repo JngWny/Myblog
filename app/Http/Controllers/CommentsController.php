@@ -24,11 +24,11 @@ class CommentsController extends Controller
      */
     public function store(Request $request, $post_id)
     {
-        $this->validate($request, array(
+        $this->validate($request, [
             'name'      =>  'required|max:255',
             'email'     =>  'required|email|max:255',
             'comment'   =>  'required|min:5|max:2000'
-            ));
+            ]);
 
         $post = Post::find($post_id);
 
@@ -70,7 +70,7 @@ class CommentsController extends Controller
     {
         $comment = Comment::find($id);
 
-        $this->validate($request, array('comment' => 'required'));
+        $this->validate($request, ['comment' => 'required']);
 
         $comment->comment = $request->comment;
         $comment->save();

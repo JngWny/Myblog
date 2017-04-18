@@ -11,7 +11,8 @@ use Session;
 class TagController extends Controller
 {
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -34,7 +35,7 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, array('name' => 'required|max:255'));
+        $this->validate($request, ['name' => 'required|max:255']);
         $tag = new Tag;
         $tag->name = $request->name;
         $tag->save();

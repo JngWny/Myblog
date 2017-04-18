@@ -11,7 +11,8 @@ use Session;
 class CategoryController extends Controller
 {
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -27,7 +28,6 @@ class CategoryController extends Controller
 
         $categories = Category::all();
         return view('categories.index')->withCategories($categories);
-
     }
 
     /**
@@ -39,9 +39,9 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         // Save a new category and then redirect back to index
-        $this->validate($request, array(
+        $this->validate($request, [
             'name' => 'required|max:255'
-            ));
+            ]);
 
         $category = new Category;
 
